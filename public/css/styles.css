@@ -15,9 +15,11 @@ body {
 
 #wrapper {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 2rem auto;
   padding: 1rem;
+  border: 10px solid blue;
   background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 /************ Header ************************/
@@ -41,29 +43,29 @@ header {
 }
 
 /************ Navigation **************/
+nav {
+  background-color: #000;
+  padding: 1rem;
+}
 
 nav ul {
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap: 2rem;
   list-style: none;
   padding: 0;
-  margin: 1rem 0;
+  margin: 0;
 }
 
 nav a {
   text-decoration: none;
   color: #333;
   font-weight: bold;
-  padding: 0.5rem 1rem;
-  background-color: #eee;
-  border-radius: 5px;
 }
 
 nav a:hover,
 nav a:focus {
-  background-color: #ddd;
-  outline: none;
+  color: #ddd;
 }
 
 /**************** Hero Section ************************/
@@ -71,20 +73,29 @@ nav a:focus {
    display: flex;
    flex-wrap: wrap;
    align-items: center;
-   justify-content: space-between;
-   gap: 2rem;
+   justify-content: center;
    margin-bottom: 2rem;
-}
-
-.hero img {
-   max-width: 100%;
-   height: auto;
-   flex: 1 1 300px;
+   flex-direction: row-reverse;
+   position: relative;
 }
 
 .hero-text {
-  flex: 1 1 300px;
+   flex: 1 1 300px;
+   position: relative;
+   z-index: 2;
+   text-align: left;
+   margin-right: 0;
 }
+
+.hero img {
+   flex: 1 1 300px;
+   max-width: 100%;
+   height: auto;
+   position: relative;
+   z-index: 1;
+   margin-left: -2rem;
+}
+
 
 .hero-text h2 {
   font-size: 2rem;
@@ -97,8 +108,15 @@ nav a:focus {
   margin-bottom: 1rem;
 }
 
+.own-today-btn {
+  display: inline-block;
+  margin-top: 1rem;
+}
+
 .own-today-btn img {
   width: 200px;
+  display: block;
+  margin: 0 auto;
   cursor: pointer;
   transition: transform 0.2s ease;
 }
@@ -118,16 +136,19 @@ section {
   flex-wrap: wrap;
 }
 
-.upgrades,
+.upgrades {
+  flex: 1 1 50%;
+}
+
 .reviews {
-  flex: 1 1 45%;
+  flex: 1 1 50%;
 }
 
 /******** Upgrades **************/
 .upgrade-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
 }
 
 .upgrade-item {
@@ -137,12 +158,25 @@ section {
 .upgrade-item img {
   width: 100px;  
   height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 .upgrade-item p {
   margin-top: 0.5rem;
 } 
 
+.upgrade-item:nth-child(2),
+.upgrade-item:nth-child(3) {
+  grid-column: 1;
+}
+
+.upgrade-item:nth-child(4),
+.upgrade-item:nth-child(5) {
+  grid-column: 2;
+}
+  
+  
 /*********** Reviews ***********/
 .reviews ul {
   list-style: none;
@@ -164,6 +198,12 @@ footer {
 /********** Responsive Styles **********/
 
 @media (max-width: 768px) {
+  #wrapper {
+    margin: 1rem auto;
+    border: 6px solid;
+    padding: 0.5rem;
+  } 
+
   header {
     flex-direction: column;
     align-items: center;
@@ -185,10 +225,29 @@ footer {
 
   .hero-text {
     text-align: center;
+    margin-right: 0;
   }
 
   .own-today-btn img {
     width: 150px;
+    margin: 0 auto;
+  }
+  
+  .main-sections {
+    flex-direction: column;
+  }
+
+  .reviews {
+    order: 1;
+  }
+
+  .upgrades {
+    order: 2;
+  }
+
+  .hero img {
+    margin-left: 0;
+    margin-top: 1rem;
   }
 
   .main-sections {
@@ -197,5 +256,9 @@ footer {
 
   .upgrade-grid {
     grid-template-columns: 1fr;
+  }  
+
+  .upgrade-item {
+    grid-column: auto;  
   }
 }  

@@ -30,16 +30,12 @@ header {
   padding: 1rem 0;
 }
 
-.siteName a {
+.siteName a,
+#tools a {
   font-size: 2rem;
   font-weight: bold;
   text-decoration: none;
   color: #333;
-}
-
-#tools a {
-  text-decoration: none;
-  color: #0077cc;
 }
 
 /************ Navigation **************/
@@ -138,6 +134,9 @@ section {
 
 .upgrades {
   flex: 1 1 50%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem ;
 }
 
 .reviews {
@@ -145,12 +144,6 @@ section {
 }
 
 /******** Upgrades **************/
-.upgrade-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-}
-
 .upgrade-item {
   text-align: center;
 }
@@ -189,10 +182,10 @@ section {
 }
 
 footer {
-    text-align: center;
-    padding: 1rem;
-    background-color: #000;
-    color:#fff;
+    text-align: left;
+    color: #000;  
+    background: none;
+    padding: 0;
 }
 
 /********** Responsive Styles **********/
@@ -200,7 +193,7 @@ footer {
 @media (max-width: 768px) {
   #wrapper {
     margin: 1rem auto;
-    border: 6px solid;
+    border: 6px solid blue;
     padding: 0.5rem;
   } 
 
@@ -243,20 +236,13 @@ footer {
 
   .upgrades {
     order: 2;
+    grid-template-columns: 1fr 1fr;
   }
 
   .hero img {
     margin-left: 0;
     margin-top: 1rem;
   }
-
-  .main-sections {
-    flex-direction: column;
-  }
-
-  .upgrade-grid {
-    grid-template-columns: 1fr;
-  }  
 
   .upgrade-item {
     grid-column: auto;  

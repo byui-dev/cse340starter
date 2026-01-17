@@ -14,12 +14,16 @@ body {
 }
 
 #wrapper {
-  max-width: 1200px;
+  width: 80%;
+  min-height: 90vh;
+  /* CHANGED: min-height instead of height */
   margin: 2rem auto;
   padding: 1rem;
   border: 10px solid blue;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
 }
 
 /************ Header ************************/
@@ -55,7 +59,8 @@ nav ul {
 
 nav a {
   text-decoration: none;
-  color: #333;
+  color: #fff;
+  /* CHANGED: white text on black background */
   font-weight: bold;
 }
 
@@ -66,42 +71,44 @@ nav a:focus {
 
 /**************** Hero Section ************************/
 .hero {
-   display: flex;
-   flex-wrap: wrap;
-   align-items: center;
-   justify-content: center;
-   margin-bottom: 2rem;
-   flex-direction: row-reverse;
-   position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  /* CHANGED: space-between for better spacing */
+  margin-bottom: 2rem;
+  flex-direction: row-reverse;
 }
 
 .hero-text {
-   flex: 1 1 300px;
-   position: relative;
-   z-index: 2;
-   text-align: left;
-   margin-right: 0;
+  flex: 1 1 300px;
+  text-align: left;
+  padding-left: 2rem;
+  /* ADDED: padding for spacing */
 }
 
 .hero img {
-   flex: 1 1 300px;
-   max-width: 100%;
-   height: auto;
-   position: relative;
-   z-index: 1;
-   margin-left: -2rem;
+  flex: 1 1 300px;
+  max-width: 50%;
+  /* ADDED: limit image size */
+  height: auto;
 }
-
 
 .hero-text h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
+  color: #4A90E2;
+  /* ADDED: cyan/blue color as shown in image */
 }
 
 .hero-text ul {
-  list-style: disc;
-  padding-left: 1.5rem;
+  list-style: none;
+  /* CHANGED: no bullets */
+  padding-left: 0;
+  /* CHANGED: no padding */
   margin-bottom: 1rem;
+  color: #4A90E2;
+  /* ADDED: cyan/blue color */
 }
 
 .own-today-btn {
@@ -110,9 +117,9 @@ nav a:focus {
 }
 
 .own-today-btn img {
-  width: 200px;
+  width: 150px;
+  /* CHANGED: smaller button */
   display: block;
-  margin: 0 auto;
   cursor: pointer;
   transition: transform 0.2s ease;
 }
@@ -122,55 +129,83 @@ nav a:focus {
 }
 
 /********** Main Sections **********/
-section {
-  margin-bottom: 2rem;
-}
-
 .main-sections {
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
+  margin-bottom: 2rem;
+  flex: 1;
+  /* ADDED: allows it to grow */
 }
 
+/* IMPORTANT: Desktop layout - Upgrades on LEFT, Reviews on RIGHT */
 .upgrades {
-  flex: 1 1 50%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem ;
+  flex: 1 1 45%;
+  order: 1;
+  /* ADDED: upgrades first on desktop */
 }
 
 .reviews {
-  flex: 1 1 50%;
+  flex: 1 1 45%;
+  order: 2;
+  /* ADDED: reviews second on desktop */
 }
 
 /******** Upgrades **************/
+.upgrades {
+  flex: 1 1 45%;
+  order: 1;
+}
+
+.upgrades h3 {
+  margin-bottom: 1rem;
+}
+
+.upgrade-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
 .upgrade-item {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} 
+
+.upgrade-image-wrapper {
+  background-color: #4A90E2;
+  padding: 1.5rem;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  max-width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .upgrade-item img {
-  width: 100px;  
+  width: 100%;
+  max-width: 100px;
   height: auto;
   display: block;
-  margin: 0 auto;
 }
 
 .upgrade-item p {
-  margin-top: 0.5rem;
-} 
-
-.upgrade-item:nth-child(2),
-.upgrade-item:nth-child(3) {
-  grid-column: 1;
+  margin: 0.5rem;
+  color: #000;
+  font-size: 0.9rem;
+  text-align: center;
 }
 
-.upgrade-item:nth-child(4),
-.upgrade-item:nth-child(5) {
-  grid-column: 2;
-}
-  
-  
+
 /*********** Reviews ***********/
+.reviews h3 {
+  margin-bottom: 1rem;
+}
+
 .reviews ul {
   list-style: none;
   padding: 0;
@@ -178,73 +213,102 @@ section {
 
 .reviews li {
   margin-bottom: 0.5rem;
-  font-style: italic;
+  font-style: normal;
+  /* CHANGED: not italic */
+  line-height: 1.6;
 }
 
+.reviews li::before {
+  content: "• ";
+  /* ADDED: bullet points */
+}
+
+/*********** Footer ***********/
 footer {
-    text-align: left;
-    color: #000;  
-    background: none;
-    padding: 0;
+  text-align: left;
+  color: #000;
+  background: none;
+  padding: 1rem 0;
+  margin-top: auto;
+  /* ADDED: push to bottom */
 }
 
 /********** Responsive Styles **********/
-
 @media (max-width: 768px) {
   #wrapper {
+    width: 90%;
+    /* CHANGED: wider on mobile */
+    min-height: auto;
+    /* CHANGED: auto height */
     margin: 1rem auto;
     border: 6px solid blue;
     padding: 0.5rem;
-  } 
+  }
 
   header {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    /* CHANGED: left align */
   }
 
-  .siteName a {
+  .siteName a,
+  #tools a {
     font-size: 1.5rem;
   }
 
   nav ul {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    /* CHANGED: keep horizontal */
+    flex-wrap: wrap;
+    gap: 1rem;
   }
 
   .hero {
     flex-direction: column;
-    text-align: center;
+  }
+
+  .hero img {
+    max-width: 100%;
+    margin-bottom: 1rem;
   }
 
   .hero-text {
-    text-align: center;
-    margin-right: 0;
+    text-align: left;
+    /* CHANGED: left align */
+    padding-left: 0;
+    width: 100%;
   }
 
   .own-today-btn img {
-    width: 150px;
-    margin: 0 auto;
+    width: 120px;
   }
-  
+
   .main-sections {
     flex-direction: column;
   }
 
+  /* IMPORTANT: Mobile order - Reviews FIRST, Upgrades SECOND */
   .reviews {
     order: 1;
+    /* Reviews first on mobile */
   }
 
   .upgrades {
     order: 2;
+    /* Upgrades second on mobile */
+  }
+
+  .upgrade-grid {
     grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
   }
 
-  .hero img {
-    margin-left: 0;
-    margin-top: 1rem;
+  .upgrade-image-wrapper {
+    max-width: 120px;
+    padding: 1rem;
   }
 
-  .upgrade-item {
-    grid-column: auto;  
+  .upgrade-item img {
+    max-width: 80px;
   }
-}  
+}

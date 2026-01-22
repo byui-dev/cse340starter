@@ -225,28 +225,6 @@ VALUES   (
     5
   );
 
--- Insert new record to account table 
-INSERT INTO public.account (
-  account_firstname, 
-  account_lastname, 
-  account_email, 
-  account_password
-)
-VALUES (
-  'Tony', 
-  'Stark', 
-  'tony@starkent.com', 
-  'Iam1ronM@n'
-);
-
--- Modify the Tony Stark record to change the account_type to "Admin"
-UPDATE public.account
-SET account_type = 'Admin'
-WHERE account_email = 'tony@starkent.com';      
-
--- Delete the Tony Stark record from the database
-DELETE FROM public.account
-WHERE account_email = 'tony@starkent.com';
 
 -- Update GM Hummer record using replace function
 UPDATE public.inventory

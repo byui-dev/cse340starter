@@ -223,6 +223,66 @@ nav a:focus {
   /* ADDED: bullet points */
 }
 
+/*********** Classification View ***********/
+.classification-view h1 {
+  font-size: 2rem;
+  color: #4A90E2;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+#inv-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+#inv-display li {
+  background-color: #fff;
+  border: 2px solid #4A90E2;
+  border-radius: 5px; 
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.2s ease;
+}  
+
+#inv-display li:hover {
+  transform: scale(1.05);
+  background-color: #eef6ff;
+}
+
+#inv-display img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.namePrice {
+  font-size: 1rem;
+  color:#000
+}
+
+.namePrice h2 {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+  color: #4A90E2
+}
+
+.namePrice p {
+  font-weight: bold;
+  color: #333;
+}
+
+.notice {
+  text-align: center;
+  color: red;
+  font-weight: bold;
+  margin-top: 2rem;
+}
+
 /*********** Footer ***********/
 footer {
   text-align: left;
@@ -248,7 +308,6 @@ footer {
   header {
     flex-direction: column;
     align-items: flex-start;
-    /* CHANGED: left align */
   }
 
   .siteName a,
@@ -258,7 +317,6 @@ footer {
 
   nav ul {
     flex-direction: row;
-    /* CHANGED: keep horizontal */
     flex-wrap: wrap;
     gap: 1rem;
   }
@@ -274,7 +332,6 @@ footer {
 
   .hero-text {
     text-align: left;
-    /* CHANGED: left align */
     padding-left: 0;
     width: 100%;
   }
@@ -310,5 +367,9 @@ footer {
 
   .upgrade-item img {
     max-width: 80px;
+  }
+
+  #inv-display {
+    grid-template-columns: 1fr;
   }
 }

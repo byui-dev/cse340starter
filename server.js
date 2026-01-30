@@ -12,6 +12,7 @@ const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
+const {getNav} = require("./utilities/")
 
 
 /* ***********************
@@ -47,14 +48,19 @@ app.use(async (req, res, next) => {
  * Place after all other middleware 
  **************************/
 app.use(async (err, req, res, next) => {
-  let nav = await utilities.getNav()
-  console.error(`Error at: ${req.originalUrl}: ${err.message}`)
-  res.render("errors/error", {
-    title: err.status || "Error",
-    message: err.message,
-    nav
-  })
-})  
+  try {
+    let nav = await getNav()
+    console.error(`Error at: ${req.originalUrl}: ${err.message}`)
+    res.render("errors/error", {
+      title: err.status || "Error",
+      message: err.message,
+      nav
+    })
+  } catch (error) {
+    console.error("Error building navigation: ", error.message)
+    res.status(err.status || 500).send("err.message")
+  }
+})
 
 /* ***********************
  * Local Server Information

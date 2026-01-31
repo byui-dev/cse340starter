@@ -285,7 +285,7 @@ nav a:focus {
 
 /****************** Item/Vehicle Detail View ******************/
 .item-detail {
-  padding: 2 rem 0;
+  padding: 2rem 0;
 }
 
 .item-detail h1 {
@@ -297,10 +297,27 @@ nav a:focus {
 
 .vehicle-detail {
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  max-width: 600px;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: flex-start;
+  max-width: 1000px;
   margin: 0 auto;
+}
+
+.vehicle-image {
+  flex: 1 1 45%;
+}
+
+.vehicle-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.vehicle-info {
+  flex: 1 1 55%;
 }
 
 .vehicle-detail img {
@@ -418,6 +435,7 @@ footer {
   }
 
   .vehicle-detail {
+    flex-direction: column;
     max-width: 100%;
   }
 }

@@ -61,17 +61,20 @@ Util.buildClassificationGrid = async function (data) {
  * Build the vehicle detail view HTML
  ********************************************/
 Util.buildVehicleDetail = async function (vehicle) {
-  let detail = '<section class ="vehicle-detail">'
-  detail += '<h2>' + vehicle.inv_make + ' ' + vehicle.inv_model + '</h2>'
-
+  let detail = '<section class="vehicle-detail">'
+  detail += '<div class="vehicle-image">'
   detail += '<img src="' + vehicle.inv_image + '" alt="Image of '
-          + vehicle.inv_make + ' ' + vehicle.inv_model + '">'
+    + vehicle.inv_make + ' ' + vehicle.inv_model + '">' 
+  detail += '</div>'
+
+  detail += '<div class="vehicle-info">'
+  detail += '<h2>' + vehicle.inv_make + ' ' + vehicle.inv_model + '</h2>'
   detail += '<p><strong>Year:</strong> ' + vehicle.inv_year + '</p>'
-  detail += '<p><strong>Price:</strong> $'
-          + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</p>'
+  detail += '<p><strong>Price:</strong> $' + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</p>'
   detail += '<p><strong>Color:</strong> ' + vehicle.inv_color + '</p>'
   detail += '<p><strong>Miles:</strong> ' + new Intl.NumberFormat('en-US').format(vehicle.inv_miles) + '</p>'
   detail += '<p><strong>Description:</strong> ' + vehicle.inv_description + '</p>'
+  detail += '</div>'
   detail += '</section>'
   return detail
 }

@@ -1,7 +1,6 @@
-<% if (title) { %>
-<h1><%= title %></h1>
-<% } else { 
-   res.redirect('/')
-} %>
-
-<%- message %>
+<section class="error-page" role="alert" aria-live="assertive">
+   <h1><%= title || 'Server Error' %></h1>
+   <p>Sorry — an unexpected error occurred on the server.</p>
+   <p class="error-message"><%= message %></p>
+   <p><a href="/">Return to Home</a> or use the navigation above to continue browsing.</p>
+</section>

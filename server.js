@@ -12,7 +12,7 @@ const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
-const {getNav} = require("./utilities/")
+const utilities = require("./utilities/")
 
 
 /* ***********************
@@ -28,8 +28,8 @@ app.set("layout", "./layouts/layout") // not at views root
  *************************/
 app.use(static)
 
-// Index route
-app.get("/", baseController.buildHome)
+// Index route (wrapped to forward async errors)
+app.get("/", utilities.asyncHandler(baseController.buildHome))
 
 // Inventory routes
 app.use("/inv", inventoryRoute)
@@ -49,7 +49,7 @@ app.use(async (req, res, next) => {
  **************************/
 app.use(async (err, req, res, next) => {
   try {
-    let nav = await getNav()
+    let nav = await utilities.getNav()
     console.error(`Error at: ${req.originalUrl}: ${err.message}`)
     res.render("errors/error", {
       title: err.status || "Error",

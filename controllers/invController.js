@@ -43,13 +43,7 @@ invCont.buildAddClassification = async function (req, res, next) {
 invCont.buildAddInventory = async function (req, res, next) {
   try {
     let nav = await utilities.getNav()
-    const data = await invModel.getClassifications()
-    let classificationList = "<select name=\"classification_id\" id=\"classification_id\" required>"
-    classificationList += "<option value=\"\">Choose a Classification</option>"
-    data.rows.forEach((row) => {
-      classificationList += `<option value=\"${row.classification_id}\">${row.classification_name}</option>`
-    })
-    classificationList += "</select>"
+    const classificationList = await utilities.buildClassificationList()
 
     res.render("inventory/add-inventory", {
       title: "Add Inventory",
@@ -57,6 +51,16 @@ invCont.buildAddInventory = async function (req, res, next) {
       classificationList,
       message: req.flash("notice"),
       errors: null,
+      inv_make: "",
+      inv_model: "",
+      inv_year: "",
+      inv_description: "",
+      inv_image: "/images/vehicles/no-image.png",
+      inv_thumbnail: "/images/vehicles/no-image-tn.png",
+      inv_price: "",
+      inv_miles: "",
+      inv_color: "",
+      classification_id: null,
     })
   } catch (err) {
     next(err)
@@ -116,8 +120,26 @@ invCont.addInventory = async function (req, res, next) {
       req.flash("notice", "Inventory item added.")
       return res.redirect("/inv/")
     }
+
+    const classificationList = await utilities.buildClassificationList(classification_id)
     req.flash("notice", "Sorry, the inventory item could not be added.")
-    return res.redirect("/inv/add-item")
+    return res.status(501).render("inventory/add-inventory", {
+      title: "Add Inventory",
+      nav: await utilities.getNav(),
+      classificationList,
+      message: req.flash("notice"),
+      errors: [{ msg: "Database insert failed."  }],
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      classification_id,
+    })
   } catch (err) {
     next(err)
   }

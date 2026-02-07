@@ -1,0 +1,12 @@
+<section class="management-view">
+	<h1><%= title %></h1>
+
+	<%- messages() %>
+
+	<form action="/inv/add-class" method="POST" class="auth-form">
+		<label for="classification_name">Classification Name</label>
+		<input type="text" id="classification_name" name="classification_name" required>
+
+		<button type="submit">Add Classification</button>
+	</form>
+</section>

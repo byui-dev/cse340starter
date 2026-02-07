@@ -27,6 +27,6 @@ router.get("/register",
 )
 
 // Add a "POST" route for registration
-router.post("/register", utilities.handleErrors(accountsController.registerAccount))
+router.post("/register", utilities.asyncHandler(accountsController.registerAccount))
 
 module.exports = router;

@@ -15,19 +15,19 @@
 
 <form action="/account/register" method="POST">
    <span>All Fields are required</span> 
-   <label for="firstName">First Name</label>
-   <input type="text" id="firstName" name="firstName" required>
+    <label for="account_firstname">First Name</label>
+    <input type="text" id="account_firstname" name="account_firstname" required>
 
-   <label for="lastName">Last Name</label>
-   <input type="text" id="lastName" name="lastName" required>
+    <label for="account_lastname">Last Name</label>
+    <input type="text" id="account_lastname" name="account_lastname" required>
 
-   <label for="email">Email address</address></label>
-   <input type="email" id="email" name="email" required>
+    <label for="account_email">Email address</address></label>
+    <input type="email" id="account_email" name="account_email" required>
 
-   <label for="password">Password:</label>
+    <label for="account_password">Password:</label>
    <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special
     character</span>
-   <input type="password" name="password" id="password" required
+    <input type="password" name="account_password" id="account_password" required
     pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
    <button type="submit">Register</button>
   </form>

@@ -512,6 +512,82 @@ footer {
   /* ADDED: push to bottom */
 }
 
+/*************Inventory Forms****************/
+.inventory-form,
+.management-view, .auth-form {
+  max-width: 700px;
+}
+
+.auth-form textarea,
+.auth-form select,
+.auth-form input[type="number"] {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.auth-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/*****Form Help Text*****/
+.form-hint {
+  display: block;
+  margin: 0.25rem 0 0.75rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/********* Error List *************/
+.error-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.error-list li {
+  margin: 0.75rem 1rem;
+  border-left: 5px solid #e74c3c;
+  background-color: #fef5f5;
+  color: #c0392b;
+  border-radius: 5px;
+}
+
+/************* Management Links*****************/
+.management-view a {
+  display: inline-block;
+  margin: 0.5rem 0.5rem 1rem 0;
+  padding: 0.6rem 1rem;
+  background: #4A90E2;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+} 
+
+.management-view a:hover,
+.management-view a:focus {
+  background: #357ABD;
+}
+
+/********** Focus States **********/
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #4A90E2;
+  outline-offset: 2px;
+}
+
+/********** Required Label Utility **********/
+.required::after {
+  content: " *";
+  color: #e74c3c;
+}
+
 /********** Responsive Styles **********/
 @media (max-width: 768px) {
   #wrapper {
@@ -627,5 +703,19 @@ footer {
     max-width: 100%;
     padding: 1rem;
     border-width: 1px;
+  }
+
+  .management-view a {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  .auth-form {
+    padding: 1rem;
+  }
+
+  .error-list li {
+    font-size: 0.95rem;
   }
 }

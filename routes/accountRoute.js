@@ -32,4 +32,7 @@ router.get("/register",
 // Add a "POST" route for registration
 router.post("/register", utilities.asyncHandler(accountsController.registerAccount))
 
+// Add a default route that will direct to the account management view
+router.get("*", utilities.asyncHandler(accountsController.buildAccountManagementView))
+
 module.exports = router;

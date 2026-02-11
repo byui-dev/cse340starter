@@ -17,8 +17,11 @@ router.get("/",
 )
 
 // Add a "GET" route for login
-router.get("/login",
-  utilities.asyncHandler(accountsController.buildLogin)
+router.post(
+  "/login",
+   regvalidate.loginRules(),
+   regvalidate.checkLoginData,
+   utilities.asyncHandler(accountsController.accountLogin)
 )  
 
 // Add a "GET" route for registration

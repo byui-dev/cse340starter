@@ -40,6 +40,6 @@ router.get("/register",
 router.post("/register", utilities.asyncHandler(accountsController.registerAccount))
 
 // Add a default route that will direct to the account management view
-router.get("*", utilities.asyncHandler(accountsController.buildAccountManagementView))
+router.get("/", utilities.checkLogin, utilities.asyncHandler(accountsController.buildAccountManagementView))
 
 module.exports = router;

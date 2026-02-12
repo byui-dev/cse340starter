@@ -10,8 +10,20 @@
 <a href="/inv/add-class">Add New Classification</a>
 <a href="/inv/add-item">Add New Vehicle</a>
 
+<h2>Manage Inventory</h2>
+<p>Select a classification to view those vehicles</p>
+
+<!-------- EJS code block to display classification select list -->
+<%- classificationSelect %>
+
+<!---------Table to display inventory items---->
+<table id="inventoryDisplay"></table>
+
+<noscript>JavaScript must be enabled to use this page.</noscript>
+
 <!----<a href="/inv/edit/2" title="Click to update">Modify</a>
     <a href="/inv/delete/2" title="Click to delete">Delete</a>-->
 
-            
+<script src="../../js/inventory.js"></script>
+    
 </section>

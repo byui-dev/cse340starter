@@ -572,6 +572,92 @@ footer {
   background: #357ABD;
 }
 
+/********** Inventory Management Table **********/
+#inventoryDisplay {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  border: 2px solid #4A90E2;
+  background: #fff;
+}
+
+#inventoryDisplay th,
+#inventoryDisplay td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e5e5e5;
+  text-align: left;
+}
+
+#inventoryDisplay thead th {
+  background: #eef6ff;
+  color: #333;
+  font-weight: bold;
+}
+
+#inventoryDisplay tbody tr:hover {
+  background: #f7fbff;
+}
+
+#inventoryDisplay a {
+  color: #4A90E2;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#inventoryDisplay a:hover,
+#inventoryDisplay a:focus {
+  color: #357ABD;
+  text-decoration: underline;
+}
+
+/********** Management View Text **********/
+.management-view h2 {
+  color: #4A90E2;
+  margin-top: 1.5rem;
+}
+
+.management-view p {
+  color: #333;
+  margin-bottom: 0.75rem;
+}
+
+/********** Management Page Select **********/
+.management-view select {
+  width: 100%;
+  max-width: 420px;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin: 0.5rem 0 1rem;
+}
+
+/********** Errors List in Add Inventory **********/
+.notice {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.notice li {
+  padding: 0.75rem 1rem;
+  border-left: 5px solid #e74c3c;
+  background-color: #fef5f5;
+  color: #c0392b;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+}
+
+/********** Noscript Message **********/
+.management-view noscript {
+  display: block;
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-left: 5px solid #f39c12;
+  background-color: #fffbf0;
+  color: #d68910;
+  border-radius: 5px;
+}
+
 /********** Focus States **********/
 a:focus-visible,
 button:focus-visible,
@@ -586,6 +672,92 @@ textarea:focus-visible {
 .required::after {
   content: " *";
   color: #e74c3c;
+}
+
+/***************Inventory Management Table****************/
+#inventoryDisplay {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  border: 2px solid #4A90E2;
+  background: #fff;
+}
+
+#inventoryDisplay th,
+#inventoryDisplay td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e5e5e5;
+  text-align: left;
+}
+
+#inventoryDisplay thead th {
+  background: #eef6ff;
+  color: #333;
+  font-weight: bold;
+}
+
+#inventoryDisplay tbody tr:hover {
+  background: #f7fbff;
+}
+
+#inventoryDisplay a {
+  color: #4A90E2;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#inventoryDisplay a:hover,
+#inventoryDisplay a:focus {
+  color: #357ABD;
+  text-decoration: underline;
+}
+
+/*********************Management view text**************/
+.management-view h2 {
+  color: #4A90E2;
+  margin-top: 1.5rem;
+}
+
+.management-view p {
+  color: #333;
+  margin: 0.75rem 0;
+}
+
+/***************Management Page Select****************/
+.management-view select {
+  width: 100%;
+  max-width: 420px;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin: 0.5rem 0 1rem;
+}
+
+/*************Error List in Add Inventory**********/
+.notice {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.notice li {
+  padding: 0.75rem 1rem;
+  border-left: 5px solid #e74c3c;
+  background-color: #fef5f5;
+  color: #c0392b;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+}
+
+/************Noscript Message**********/
+.management-view noscript {
+  display: block;
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-left: 5px solid #f39c12;
+  background-color: #fffbf0;
+  color: #d68910;
+  border-radius: 5px;
 }
 
 /********** Responsive Styles **********/
@@ -666,6 +838,11 @@ textarea:focus-visible {
 
   #inv-display {
     grid-template-columns: 1fr;
+  }
+
+  #inventoryDisplay {
+    display: block;
+    overflow-x: auto;
   }
 
   .item-detail h1 {

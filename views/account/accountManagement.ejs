@@ -1,0 +1,15 @@
+<div class="auth-form">
+    <h1>
+        <%= title %>
+    </h1>
+
+    <!-- Flash Message -->
+    <% if (message) { %>
+        <div class="alert alert-error">
+            <%= message %>
+        </div>
+        <% } %>
+
+    <!---------- Account Management View------------------------->        
+    <div class="account-management">
+    <p>You're logged in.</p>

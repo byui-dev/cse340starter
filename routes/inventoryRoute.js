@@ -45,4 +45,10 @@ router.get(
   utilities.asyncHandler(invController.getInventoryJSON),
 );
 
+// Route to build edit inventory view
+router.get(
+  "/edit/:inventoryId",
+  utilities.asyncHandler(invController.buildEditInventory),
+);
+
 module.exports = router;

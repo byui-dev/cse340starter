@@ -572,6 +572,14 @@ footer {
   background: #357ABD;
 }
 
+/********** Management Actions **********/
+.management-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0.5rem 0 1rem;
+}
+
 /********** Inventory Management Table **********/
 #inventoryDisplay {
   width: 100%;
@@ -588,14 +596,33 @@ footer {
   text-align: left;
 }
 
+#inventoryDisplay th:nth-child(2),
+#inventoryDisplay th:nth-child(3),
+#inventoryDisplay td:nth-child(2),
+#inventoryDisplay td:nth-child(3) {
+  width: 120px;
+  text-align: center;
+}
+
 #inventoryDisplay thead th {
   background: #eef6ff;
   color: #333;
   font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 #inventoryDisplay tbody tr:hover {
   background: #f7fbff;
+}
+
+#inventoryDisplay .empty-row td {
+  padding: 1rem;
+  text-align: center;
+  color: #c0392b;
+  background-color: #fef5f5;
+  border-left: 5px solid #e74c3c;
 }
 
 #inventoryDisplay a {

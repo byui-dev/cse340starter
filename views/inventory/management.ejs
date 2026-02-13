@@ -7,17 +7,43 @@
 
 <%- messages() %>
 
-<a href="/inv/add-class">Add New Classification</a>
-<a href="/inv/add-item">Add New Vehicle</a>
+<h2>Management Actions</h2>
+<div class="management-actions">
+    <a href="/inv/add-class">Add New Classification</a>
+    <a href="/inv/add-item">Add New Vehicle</a>
+</div>
 
-<h2>Manage Inventory</h2>
+<h2>Vehicle Management</h2>
 <p>Select a classification to view those vehicles</p>
 
 <!-------- EJS code block to display classification select list -->
 <%- classificationSelect %>
 
 <!---------Table to display inventory items---->
-<table id="inventoryDisplay"></table>
+<table id="inventoryDisplay">
+    <thead>
+        <tr>
+            <th>Vehicle Name</th>
+            <th>Modify</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% if (inventoryList && inventoryList.length) { %>
+            <% inventoryList.forEach((item) => { %>
+                <tr>
+                    <td><%= item.inv_make %> <%= item.inv_model %></td>
+                    <td><a href="/inv/edit/<%= item.inv_id %>" title="Click to update">Modify</a></td>
+                    <td><a href="/inv/delete/<%= item.inv_id %>" title="Click to delete">Delete</a></td>
+                </tr>
+            <% }) %>
+        <% } else { %>
+            <tr class="empty-row">
+                <td colspan="3">No inventory items found.</td>
+            </tr>
+        <% } %>
+    </tbody>
+</table>
 
 <noscript>JavaScript must be enabled to use this page.</noscript>
 

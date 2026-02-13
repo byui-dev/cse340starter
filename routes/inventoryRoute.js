@@ -3,6 +3,7 @@ const express = require("express");
 const router = new express.Router();
 const invController = require("../controllers/invController");
 const utilities = require("../utilities/");
+const invValidate = require("../utilities/inventory-validation");
 
 // Route to build inventory management view
 router.get("/", utilities.asyncHandler(invController.buildManagement));
@@ -49,6 +50,26 @@ router.get(
 router.get(
   "/edit/:inventoryId",
   utilities.asyncHandler(invController.buildEditInventory),
+);
+
+// Route to process inventory update
+router.post(
+  "/update-item",
+  invValidate.inventoryRules(),
+  invValidate.checkInventoryUpdateData,
+  utilities.asyncHandler(invController.updateInventory),
+);
+
+// Route to build delete confirmation view
+router.get(
+  "/delete/:inventoryId",
+  utilities.asyncHandler(invController.buildDeleteInventory),
+);
+
+// Route to process inventory deletion
+router.post(
+  "/delete-item",
+  utilities.asyncHandler(invController.deleteInventory),
 );
 
 module.exports = router;

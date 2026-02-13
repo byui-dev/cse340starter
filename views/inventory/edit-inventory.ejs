@@ -11,7 +11,7 @@
         </ul>
     <% } %>
 
-    <form action="/inv/update-item" method="POST" class="auth-form">
+    <form id="updateForm" action="/inv/update-item" method="POST" class="auth-form">
         <input type="hidden" name="inventory_id" value="<%= inventory_id %>">
 
         <label for="inv_make">Make</label>
@@ -51,9 +51,12 @@
         <label for="classification_id">Classification</label>
         <%- classificationList %>
 
-        <button type="submit">Update Inventory</button>
+        <button type="submit"v  >Update Inventory</button>
         <input type="hidden" name="inv_id"
         <% if(locals.inv_id) { %> value="<%= locals.inv_id %>" 
         <% } %>>
     </form>
+
+    <script src="/js/inv-update.js"></script>
+
 </section>

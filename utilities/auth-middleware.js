@@ -13,7 +13,7 @@ function checkAccountType(req, res, next) {
         const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
     
         // Check account type
-        if (decoded.account_type === "Employee" || decoded.account_type !== "Admin") {
+        if (decoded.account_type === "Employee" || decoded.account_type === "Admin") {
             // Allow access
             next()
         } else {

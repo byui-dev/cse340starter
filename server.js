@@ -37,9 +37,10 @@ app.use(session({
 
 // Set login status for views
 app.use((req, res, next) => {
-  res.locals.isLoggedIn = req.session.loggedin || false
+  res.locals.isLoggedIn = req.session.isLoggedIn || false
   res.locals.account_firstname = req.session.account_firstname || null
   res.locals.account_lastname = req.session.account_lastname || null
+  res.locals.account_type = req.session.account_type || null
   next()
 })
 

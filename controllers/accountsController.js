@@ -98,11 +98,19 @@ async function accountLogin(req, res) {
     if (await bcrypt.compare(account_password, accountData.account_password)) {
       delete accountData.account_password
       const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
-      if (process.env.NODE_ENV === "development") {
-        res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
-      } else {
-        res.cookie("jwt", accessToken, { httpOnly: true, secure:true, maxAge: 3600 * 1000 })
-      }
+      
+      // Set cookie
+      res.cookie("jwt", accessToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "development",
+        maxAge: 3600 * 1000
+      })
+      
+      // Save login state and user info in session
+      req.session.isLoggedin = true
+      req.session.account_firstname = accountData.account_firstname
+      req.session.account_lastname = accountData.account_lastname
+    
       return res.redirect("/account/")
     }
     else {

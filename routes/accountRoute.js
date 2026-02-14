@@ -42,4 +42,15 @@ router.post("/register", utilities.asyncHandler(accountsController.registerAccou
 // Add a default route that will direct to the account management view
 router.get("/", utilities.checkLogin, utilities.asyncHandler(accountsController.buildAccountManagementView))
 
+// Add logout route
+router.get("/logout", (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      console.error("Error destroying session: ", err)
+    }
+    res.clearCookie("jwt")
+    res.redirect("/")
+  })
+})
+
 module.exports = router;

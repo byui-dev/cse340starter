@@ -35,6 +35,14 @@ app.use(session({
   name: 'sessionId',
 }))
 
+// Set login status for views
+app.use((req, res, next) => {
+  res.locals.isLoggedIn = req.session.loggedin || false
+  res.locals.account_firstname = req.session.account_firstname || null
+  res.locals.account_lastname = req.session.account_lastname || null
+  next()
+})
+
 // Express Messages Middleware
 app.use(require('connect-flash')())
 app.use(function(req, res, next){

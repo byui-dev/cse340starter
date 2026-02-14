@@ -1,56 +1,61 @@
 // Needed Resources
-const express = require("express")
-const router = new express.Router()
-const regvalidate = require("../utilities/account-validation")
-const accountsController = require("../controllers/accountsController")  
-const utilities = require("../utilities/")
+const express = require("express");
+const router = new express.Router();
+const regvalidate = require("../utilities/account-validation");
+const accountsController = require("../controllers/accountsController");
+const utilities = require("../utilities/");
 
-// Add a "GET" route for the path that will be sent when the "My Account" link is clicked
-router.get("/", 
+router.get(
+  "/",
+  utilities.checkLogin,
   utilities.asyncHandler(accountsController.buildAccountManagementView),
-  (err, req, res, next) => {
-    console.error("Account route error: ", err.message)
-    res.status(err.status || 500).render("errors/error", {
-      title: "Account Error",
-      message: err.message,
-    })
-  }
-)
+);
 
 // Add a "GET" route for login view
-router.get(
-  "/login",
-  utilities.asyncHandler(accountsController.buildLogin)
-)
+router.get("/login", utilities.asyncHandler(accountsController.buildLogin));
 
 // Add a "POST" route for login
 router.post(
   "/login",
   regvalidate.loginRules(),
   regvalidate.checkLoginData,
-  utilities.asyncHandler(accountsController.accountLogin)
-)
+  utilities.asyncHandler(accountsController.accountLogin),
+);
 
 // Add a "GET" route for registration
-router.get("/register",
-  utilities.asyncHandler(accountsController.buildRegister)
-)
+router.get(
+  "/register",
+  utilities.asyncHandler(accountsController.buildRegister),
+);
 
 // Add a "POST" route for registration
-router.post("/register", utilities.asyncHandler(accountsController.registerAccount))
+router.post(
+  "/register",
+  utilities.asyncHandler(accountsController.registerAccount),
+);
 
-// Add a default route that will direct to the account management view
-router.get("/", utilities.checkLogin, utilities.asyncHandler(accountsController.buildAccountManagementView))
+router.get("/logout", utilities.asyncHandler(accountsController.logout));
 
-// Add logout route
-router.get("/logout", (req, res) => {
-  req.session.destroy(err => {
-    if (err) {
-      console.error("Error destroying session: ", err)
-    }
-    res.clearCookie("jwt")
-    res.redirect("/")
-  })
-})
+router.get(
+  "/update/:accountId",
+  utilities.checkLogin,
+  utilities.asyncHandler(accountsController.buildUpdateAccount),
+);
+
+router.post(
+  "/update/info",
+  utilities.checkLogin,
+  regvalidate.accountUpdateRules(),
+  regvalidate.checkAccountUpdateData,
+  utilities.asyncHandler(accountsController.updateAccountInfo),
+);
+
+router.post(
+  "/update/password",
+  utilities.checkLogin,
+  regvalidate.passwordUpdateRules(),
+  regvalidate.checkPasswordData,
+  utilities.asyncHandler(accountsController.updateAccountPassword),
+);
 
 module.exports = router;

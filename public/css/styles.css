@@ -14,12 +14,12 @@ body {
 }
 
 #wrapper {
-  width: 80%;
+  width: min(90%, 1100px);
+  max-width: 1100px;
   min-height: 90vh;
-  /* CHANGED: min-height instead of height */
   margin: 2rem auto;
-  padding: 1rem;
-  border: 10px solid blue;
+  padding: 1.5rem;
+  border: 6px solid #4A90E2;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   display: flex;
@@ -278,9 +278,25 @@ nav a:focus {
 
 .notice {
   text-align: center;
-  color: red;
+  color: #c0392b;
   font-weight: bold;
-  margin-top: 2rem;
+  margin: 1.5rem 0;
+}
+
+ul.notice {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  text-align: left;
+}
+
+ul.notice li {
+  padding: 0.75rem 1rem;
+  border-left: 5px solid #e74c3c;
+  background-color: #fef5f5;
+  color: #c0392b;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
 }
 
 /****************** Item/Vehicle Detail View ******************/
@@ -459,7 +475,7 @@ nav a:focus {
   padding: 0.8rem;
   border: 1px solid #ccc;
   border-radius: 6px;
-  box-sizing: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .auth-form input:focus {
@@ -483,6 +499,36 @@ nav a:focus {
 
 .auth-form button:hover {
   background-color: #357ABD;
+}
+
+.account-update {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border: 1px solid #e0e8f4;
+  border-radius: 8px;
+  background-color: #f8fbff;
+}
+
+.account-update + .account-update {
+  margin-top: 1.5rem;
+}
+
+.account-update h2 {
+  margin-top: 0;
+  color: #2b4c7e;
+  text-align: left;
+}
+
+.stacked-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.stacked-form button {
+  width: fit-content;
+  align-self: flex-start;
+  padding-inline: 1.5rem;
 }
 
 /* optional helper links */
@@ -514,7 +560,7 @@ footer {
 
 /*************Inventory Forms****************/
 .inventory-form,
-.management-view, .auth-form {
+.management-view {
   max-width: 700px;
 }
 
@@ -658,21 +704,6 @@ footer {
   margin: 0.5rem 0 1rem;
 }
 
-/********** Errors List in Add Inventory **********/
-.notice {
-  list-style: none;
-  padding: 0;
-  margin: 1rem 0;
-}
-
-.notice li {
-  padding: 0.75rem 1rem;
-  border-left: 5px solid #e74c3c;
-  background-color: #fef5f5;
-  color: #c0392b;
-  border-radius: 5px;
-  margin-bottom: 0.5rem;
-}
 
 /********** Noscript Message **********/
 .management-view noscript {
@@ -702,42 +733,6 @@ textarea:focus-visible {
 }
 
 /***************Inventory Management Table****************/
-#inventoryDisplay {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
-  border: 2px solid #4A90E2;
-  background: #fff;
-}
-
-#inventoryDisplay th,
-#inventoryDisplay td {
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid #e5e5e5;
-  text-align: left;
-}
-
-#inventoryDisplay thead th {
-  background: #eef6ff;
-  color: #333;
-  font-weight: bold;
-}
-
-#inventoryDisplay tbody tr:hover {
-  background: #f7fbff;
-}
-
-#inventoryDisplay a {
-  color: #4A90E2;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-#inventoryDisplay a:hover,
-#inventoryDisplay a:focus {
-  color: #357ABD;
-  text-decoration: underline;
-}
 
 /*********************Management view text**************/
 .management-view h2 {
@@ -760,43 +755,14 @@ textarea:focus-visible {
   margin: 0.5rem 0 1rem;
 }
 
-/*************Error List in Add Inventory**********/
-.notice {
-  list-style: none;
-  padding: 0;
-  margin: 1rem 0;
-}
-
-.notice li {
-  padding: 0.75rem 1rem;
-  border-left: 5px solid #e74c3c;
-  background-color: #fef5f5;
-  color: #c0392b;
-  border-radius: 5px;
-  margin-bottom: 0.5rem;
-}
-
-/************Noscript Message**********/
-.management-view noscript {
-  display: block;
-  margin-top: 1rem;
-  padding: 0.75rem 1rem;
-  border-left: 5px solid #f39c12;
-  background-color: #fffbf0;
-  color: #d68910;
-  border-radius: 5px;
-}
-
 /********** Responsive Styles **********/
 @media (max-width: 768px) {
   #wrapper {
-    width: 90%;
-    /* CHANGED: wider on mobile */
+    width: calc(100% - 2rem);
     min-height: auto;
-    /* CHANGED: auto height */
     margin: 1rem auto;
-    border: 6px solid blue;
-    padding: 0.5rem;
+    border: 3px solid #4A90E2;
+    padding: 1rem;
   }
 
   header {
@@ -882,44 +848,3 @@ textarea:focus-visible {
     max-width: 100%;
   }
 
-  /*********** Flash Messages (Mobile) ***********/
-  .messages li {
-    padding: 0.75rem 1rem;
-    margin: 0.5rem 0;
-    border-left: 4px solid #4A90E2;
-    font-size: 0.95rem;
-  }
-
-  .alert {
-    padding: 0.75rem 1rem;
-    margin: 1rem 0;
-    border-left: 4px solid #4A90E2;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .alert strong {
-    margin-right: 0;
-    margin-bottom: 0.25rem;
-  }
-
-  .auth-form {
-    max-width: 100%;
-    padding: 1rem;
-    border-width: 1px;
-  }
-
-  .management-view a {
-    display: block;
-    width: 100%;
-    text-align: center;
-  }
-
-  .auth-form {
-    padding: 1rem;
-  }
-
-  .error-list li {
-    font-size: 0.95rem;
-  }
-}

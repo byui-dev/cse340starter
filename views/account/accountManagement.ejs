@@ -12,4 +12,20 @@
 
     <!---------- Account Management View------------------------->        
     <div class="account-management">
-    <p>You're logged in.</p>
+    <!-------------Greeting---------->
+    <h2>Welcome, <%= account_firstname %>!</h2>
+
+    <!--------Update account info link (always shown)---------->
+    <p>
+    <a href="/account/update/<%= account_id %>">Update Account Information</a>
+    </p>
+
+    <!--------Inventory Management section (only shown to Employee or Admin)---------->
+    <% if (account_type === 'Employee' || account_type === 'Admin') { %>
+        <h3>Inventory Management</h3>
+        <p>
+            <a href="/inventory/manage">Manage Inventory</a>
+        </p>
+    <% } %>
+ </div>
+</div>  

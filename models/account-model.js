@@ -1,3 +1,7 @@
+// Account model: admin helpers
+//Purpose: support account role management needed for access - control testing
+// Used by admin controllers to set account types  
+
 const pool = require("../database/");
 
 /********************************
@@ -98,10 +102,34 @@ async function updateAccountPassword(account_id, account_password) {
   }
 }
 
+async function setAccountType(account_id, account_type) {
+  try {
+    const sql = "UPDATE account SET account_type = $1 WHERE account_id = $2 RETURNING account_id";
+    const result = await pool.query(sql, [account_type, account_id]);
+    return result.rowCount > 0;
+  } catch (error) {
+    console.error("setAccountType error: " + error);
+    return null;
+  }
+}
+
+async function getAccountsByType(account_type) {
+  try {
+    const sql = "SELECT account_id, account_firstname, account_lastname, account_email FROM account WHERE account_type = $1";
+    const result = await pool.query(sql, [account_type]);
+    return result.rows;
+  } catch (error) {
+    console.error("getAccountsByType error: " + error);
+    return null;
+  }
+}
+
 module.exports = {
   registerAccount,
   getAccountByEmail,
   getAccountById,
   updateAccountInfo,
   updateAccountPassword,
+  setAccountType,
+  getAccountsByType,
 };

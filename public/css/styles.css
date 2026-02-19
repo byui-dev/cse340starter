@@ -60,7 +60,6 @@ nav ul {
 nav a {
   text-decoration: none;
   color: #fff;
-  /* CHANGED: white text on black background */
   font-weight: bold;
 }
 
@@ -75,7 +74,6 @@ nav a:focus {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  /* CHANGED: space-between for better spacing */
   margin-bottom: 2rem;
   flex-direction: row-reverse;
 }
@@ -84,13 +82,11 @@ nav a:focus {
   flex: 1 1 300px;
   text-align: left;
   padding-left: 2rem;
-  /* ADDED: padding for spacing */
 }
 
 .hero img {
   flex: 1 1 300px;
   max-width: 50%;
-  /* ADDED: limit image size */
   height: auto;
 }
 
@@ -98,17 +94,13 @@ nav a:focus {
   font-size: 2rem;
   margin-bottom: 1rem;
   color: #4A90E2;
-  /* ADDED: cyan/blue color as shown in image */
 }
 
 .hero-text ul {
   list-style: none;
-  /* CHANGED: no bullets */
   padding-left: 0;
-  /* CHANGED: no padding */
   margin-bottom: 1rem;
   color: #4A90E2;
-  /* ADDED: cyan/blue color */
 }
 
 .own-today-btn {
@@ -118,7 +110,6 @@ nav a:focus {
 
 .own-today-btn img {
   width: 150px;
-  /* CHANGED: smaller button */
   display: block;
   cursor: pointer;
   transition: transform 0.2s ease;
@@ -135,28 +126,19 @@ nav a:focus {
   flex-wrap: wrap;
   margin-bottom: 2rem;
   flex: 1;
-  /* ADDED: allows it to grow */
 }
 
-/* IMPORTANT: Desktop layout - Upgrades on LEFT, Reviews on RIGHT */
 .upgrades {
   flex: 1 1 45%;
   order: 1;
-  /* ADDED: upgrades first on desktop */
 }
 
 .reviews {
   flex: 1 1 45%;
   order: 2;
-  /* ADDED: reviews second on desktop */
 }
 
 /******** Upgrades **************/
-.upgrades {
-  flex: 1 1 45%;
-  order: 1;
-}
-
 .upgrades h3 {
   margin-bottom: 1rem;
 }
@@ -200,7 +182,6 @@ nav a:focus {
   text-align: center;
 }
 
-
 /*********** Reviews ***********/
 .reviews h3 {
   margin-bottom: 1rem;
@@ -214,13 +195,11 @@ nav a:focus {
 .reviews li {
   margin-bottom: 0.5rem;
   font-style: normal;
-  /* CHANGED: not italic */
   line-height: 1.6;
 }
 
 .reviews li::before {
   content: "• ";
-  /* ADDED: bullet points */
 }
 
 /*********** Classification View ***********/
@@ -262,7 +241,7 @@ nav a:focus {
 
 .namePrice {
   font-size: 1rem;
-  color: #000
+  color: #000;
 }
 
 .namePrice h2 {
@@ -276,6 +255,7 @@ nav a:focus {
   color: #333;
 }
 
+/*********** Notices ***********/
 .notice {
   text-align: center;
   color: #c0392b;
@@ -336,13 +316,6 @@ ul.notice li {
   flex: 1 1 55%;
 }
 
-.vehicle-detail img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 5px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
 .vehicle-detail p {
   font-size: 1rem;
   line-height: 1.8;
@@ -376,12 +349,6 @@ ul.notice li {
   margin-right: 0.5rem;
 }
 
-.alert-notice {
-  border-left-color: #4A90E2;
-  background-color: #eef6ff;
-  color: #333;
-}
-
 .alert-error {
   border-left-color: #e74c3c;
   background-color: #fef5f5;
@@ -400,7 +367,7 @@ ul.notice li {
   color: #d68910;
 }
 
-/*******************Flash Message*******************/
+/******************* Flash Message List *******************/
 .messages {
   list-style: none;
   padding: 0;
@@ -470,7 +437,10 @@ ul.notice li {
 
 .auth-form input[type="text"],
 .auth-form input[type="email"],
-.auth-form input[type="password"] {
+.auth-form input[type="password"],
+.auth-form input[type="number"],
+.auth-form select,
+.auth-form textarea {
   width: 100%;
   padding: 0.8rem;
   border: 1px solid #ccc;
@@ -478,7 +448,14 @@ ul.notice li {
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.auth-form input:focus {
+.auth-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.auth-form input:focus,
+.auth-form select:focus,
+.auth-form textarea:focus {
   border-color: #4A90E2;
   box-shadow: 0 0 3px rgba(74, 144, 226, 0.2);
   outline: none;
@@ -509,7 +486,7 @@ ul.notice li {
   background-color: #f8fbff;
 }
 
-.account-update + .account-update {
+.account-update+.account-update {
   margin-top: 1.5rem;
 }
 
@@ -531,7 +508,6 @@ ul.notice li {
   padding-inline: 1.5rem;
 }
 
-/* optional helper links */
 .auth-form .helper-link {
   text-align: center;
   margin-top: 1rem;
@@ -547,7 +523,6 @@ ul.notice li {
   text-decoration: underline;
 }
 
-
 /*********** Footer ***********/
 footer {
   text-align: left;
@@ -555,30 +530,14 @@ footer {
   background: none;
   padding: 1rem 0;
   margin-top: auto;
-  /* ADDED: push to bottom */
 }
 
-/*************Inventory Forms****************/
+/************* Inventory Forms & Management ************/
 .inventory-form,
 .management-view {
   max-width: 700px;
 }
 
-.auth-form textarea,
-.auth-form select,
-.auth-form input[type="number"] {
-  width: 100%;
-  padding: 0.8rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
-
-.auth-form textarea {
-  min-height: 120px;
-  resize: vertical;
-}
-
-/*****Form Help Text*****/
 .form-hint {
   display: block;
   margin: 0.25rem 0 0.75rem;
@@ -601,7 +560,7 @@ footer {
   border-radius: 5px;
 }
 
-/************* Management Links*****************/
+/************* Management Links *****************/
 .management-view a {
   display: inline-block;
   margin: 0.5rem 0.5rem 1rem 0;
@@ -611,7 +570,7 @@ footer {
   text-decoration: none;
   border-radius: 6px;
   font-weight: bold;
-} 
+}
 
 .management-view a:hover,
 .management-view a:focus {
@@ -683,6 +642,85 @@ footer {
   text-decoration: underline;
 }
 
+/********** Inventory search & pagination **********/
+.inventory-search {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+.inventory-search input[type="search"] {
+  flex: 1 1 220px;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.inventory-search button {
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #4A90E2;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.inventory-search button:hover {
+  background-color: #357ABD;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1rem 0;
+  font-weight: bold;
+  flex-wrap: wrap;
+}
+
+.pagination a {
+  color: #4A90E2;
+  text-decoration: none;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid #4A90E2;
+  border-radius: 4px;
+}
+
+.pagination a:hover,
+.pagination a:focus {
+  background-color: #4A90E2;
+  color: #fff;
+}
+
+.pagination span {
+  color: #333;
+}
+
+/********** Async status pills **********/
+.data-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background-color: #eef6ff;
+  color: #2b4c7e;
+}
+
+.data-status.is-loading {
+  background-color: #fff8e6;
+  color: #a66800;
+}
+
+.data-status.is-error {
+  background-color: #fef5f5;
+  color: #c0392b;
+}
+
 /********** Management View Text **********/
 .management-view h2 {
   color: #4A90E2;
@@ -703,7 +741,6 @@ footer {
   border-radius: 6px;
   margin: 0.5rem 0 1rem;
 }
-
 
 /********** Noscript Message **********/
 .management-view noscript {
@@ -730,29 +767,6 @@ textarea:focus-visible {
 .required::after {
   content: " *";
   color: #e74c3c;
-}
-
-/***************Inventory Management Table****************/
-
-/*********************Management view text**************/
-.management-view h2 {
-  color: #4A90E2;
-  margin-top: 1.5rem;
-}
-
-.management-view p {
-  color: #333;
-  margin: 0.75rem 0;
-}
-
-/***************Management Page Select****************/
-.management-view select {
-  width: 100%;
-  max-width: 420px;
-  padding: 0.8rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  margin: 0.5rem 0 1rem;
 }
 
 /********** Responsive Styles **********/
@@ -804,15 +818,12 @@ textarea:focus-visible {
     flex-direction: column;
   }
 
-  /* IMPORTANT: Mobile order - Reviews FIRST, Upgrades SECOND */
   .reviews {
     order: 1;
-    /* Reviews first on mobile */
   }
 
   .upgrades {
     order: 2;
-    /* Upgrades second on mobile */
   }
 
   .upgrade-grid {
@@ -848,3 +859,15 @@ textarea:focus-visible {
     max-width: 100%;
   }
 
+  .inventory-search {
+    flex-direction: column;
+  }
+
+  .inventory-search button {
+    width: 100%;
+  }
+
+  .pagination {
+    justify-content: flex-start;
+  }
+}

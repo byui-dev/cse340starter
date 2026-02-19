@@ -1,0 +1,12 @@
+<!-- Pagination partial 
+ Purpose: render page links based on `page`, `limit`, and `total` variables -->
+<nav class="pagination" aria-label="Inventory pagination">
+  <% const pages = Math.ceil(total / limit) || 1; %>
+  <% if (page > 1) { %>
+    <a href="?page=<%= page - 1 %>&limit=<%= limit %>">Previous</a>
+  <% } %>
+  <span>Page <%= page %> of <%= pages %></span>
+  <% if (page < pages) { %>
+    <a href="?page=<%= page + 1 %>&limit=<%= limit %>">Next</a>
+  <% } %>
+</nav> 

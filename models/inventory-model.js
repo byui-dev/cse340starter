@@ -1,3 +1,7 @@
+// Inventory model: pagination, search, add, update, soft-delete
+// Purpose: provide reusable DB operations used by controllers and API
+// These return rows or counts and use parameterized queries
+
 const pool = require("../database/");
 
 /********************************
@@ -184,6 +188,70 @@ async function deleteInventory(inventory_id) {
   }
 }
 
+async function getInventoryPage(limit = 20, offset = 0) {
+  const sql = `SELECT * FROM inventory WHERE (is_active IS NULL is_active = true) ORDER BY inv_id DESC LIMIT $1 OFFSET $2`;
+  const result = await pool.query(sql, [limit, offset]);
+  return result.rows;
+}
+
+async function countInventory() {
+  const sql = `SELECT COUNT(*) FROM inventory WHERE (is_active IS NULL OR is_active = true)`;
+  const result = await pool.query(sql);
+  return Number(result.rows[0].count);
+}
+
+async function searchInventory(term, limit = 20, offset = 0) {
+  const q = `%${term}%`;
+   const sql = `SELECT * FROM inventory WHERE (is_active IS NULL OR is_active = true) AND (inv_make ILIKE $1 OR inv_model ILIKE $1 OR inv_description ILIKE $1) ORDER BY inv_id DESC LIMIT $2 OFFSET $3`;
+  const result = await pool.query(sql, [q, limit, offset]);
+  return result.rows;
+}
+
+async function createInventory(data) {
+  const sql = `INSERT INTO inventory (inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id, is_active) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) RETURNING *`;
+  const params = [
+    data.inv_make,
+    data.inv_model,
+    data.inv_year,
+    data.inv_description,
+    data.inv_image,
+    data.inv_thumbnail,
+    data.inv_price,
+    data.inv_miles,
+    data.inv_color,
+    data.classification_id,
+  ];
+  const result = await pool.query(sql, params);
+  return result.rows[0];
+}
+
+async function updateInventory(invId, data) {
+  const sql = `UPDATE inventory SET inv_make = $1, inv_model = $2, inv_year = $3, inv_description = $4, inv_image = $5, inv_thumbnail = $6, inv_price = $7, inv_miles = $8, inv_color = $9, classification_id = $10 WHERE inv_id = $11 RETURNING *`;
+  const params = [
+    data.inv_make,
+    data.inv_model,
+    data.inv_year,
+    data.inv_description,
+    data.inv_image,
+    data.inv_thumbnail,
+    data.inv_price,
+    data.inv_miles,
+    data.inv_color,
+    data.classification_id,
+    invId
+  ];
+  const result = await pool.query(sql, params);
+  return result.rows[0];
+}
+
+async function archiveInventory(invId) {
+  const sql = `UPDATE inventory SET is_active = false WHERE inv_id = $1 RETURNING *`;
+  const result = await pool.query(sql, [invId]);
+  return result.rowCount > 0; // return true if a row was updated
+}
+
+
+
 module.exports = {
   getClassifications,
   getAllInventory,
@@ -193,4 +261,10 @@ module.exports = {
   addInventory,
   updateInventory,
   deleteInventory,
+  getInventoryPage,
+  countInventory,
+  searchInventory,
+  createInventory,
+  updateInventory,
+  archiveInventory,
 };

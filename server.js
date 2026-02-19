@@ -100,16 +100,23 @@ app.use(async (err, req, res, next) => {
   try {
     let nav = await utilities.getNav()
     console.error(`Error at: ${req.originalUrl}: ${err.message}`)
-    res.render("errors/error", {
-      title: err.status || "Error",
-      message: err.message,
-      nav
-    })
+    const status = err.status || 500
+    const message = err.isOperational ? err.message : "An unexpected error occurred."
+
+    if (req.originalUrl.startsWith("/inv/api") || req.originalUrl.startsWith('/api')) {
+      return res.status(status).json({ status, message })
+    }
+
+    res.status(status).render('error', {
+      title: status,
+      message,
+      nav,
+    });
   } catch (error) {
     console.error("Error building navigation: ", error.message)
     res.status(err.status || 500).send("err.message")
   }
-})
+});
 
 /* ***********************
  * Local Server Information

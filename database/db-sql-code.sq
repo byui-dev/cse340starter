@@ -35,6 +35,9 @@ ALTER TABLE IF EXISTS public.inventory
     ON UPDATE CASCADE
     ON DELETE NO ACTION;
 
+-- Migration: add is_active flag to inventory for soft-delete and archival -- Purpose: avoid hard deletes and enable easy restore / filtering in models 
+ALTER TABLE public.inventory ADD COLUMN IF NOT EXISTS is_active boolean DEFAULT true;    
+
 -- Table structure for table `account`
 CREATE TABLE IF NOT EXISTS public.account
 (

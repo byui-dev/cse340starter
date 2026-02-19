@@ -4,7 +4,8 @@ const router = new express.Router();
 const invController = require("../controllers/invController");
 const utilities = require("../utilities/");
 const invValidate = require("../utilities/inventory-validation");
-const { checkAccountType} = require("../utilities/auth-middleware");
+const { checkAccountType } = require("../utilities/auth-middleware");
+const apiController = require("../controllers/apiController");
 
 // Route to build inventory management view (Admin only)
 router.get("/", checkAccountType, utilities.asyncHandler(invController.buildManagement));
@@ -83,5 +84,7 @@ router.post(
   checkAccountType,
   utilities.asyncHandler(invController.deleteInventory),
 );
+
+router.get('/api', utilities.asyncHandler(apiController.listInventoryJSON));
 
 module.exports = router;

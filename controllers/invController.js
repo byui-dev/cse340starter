@@ -399,4 +399,33 @@ invCont.deleteInventory = async function (req, res, next) {
   }
 };
 
+/*****************************************************
+ * Management view with pagination support
+ * Purpose: Read query params and use model pagination APIs
+ * Passes `page`, `limit`, and `total` to the view for pagination partial
+ * ********************************************************/
+async function buildManagement(req, res, next) {
+  try {
+    const page = Math.max(1, Number(req.query.page) || 1);
+    const limit = Math.min(50, Number(req.query.limit) || 10);
+    const offet = (page - 1) * limit;
+    const inventory = await invModel.getInventoryPage(limit, offset);
+    const total = await invModel.countInventory();
+
+    let nav = await utilities.getNav();
+    res.render('inventory/management', {
+      title: 'Inventory Management',
+      nav,
+      inventory,
+      page,
+      limit,
+      total,
+      message: req.flash('noticee'),
+      errors: null,
+    });
+  } catch (err) {
+    next(err);
+  }
+}  
+
 module.exports = invCont;

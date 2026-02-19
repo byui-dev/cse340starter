@@ -111,6 +111,14 @@ async function checkPasswordData(req, res, next) {
   next();
 }
 
+function accountUpdateRules() {
+  return [
+    body("account_firstname").trim().isLength({ min: 1 }).withMessage("First name is required.").escape(),
+    body("account_lastname").trim().isLength({ min: 1 }).withMessage("Last name is required.").escape(),
+    body("account_email").trim().isEmail().withMessage("Please provide a valid email address.").normalizeEmail(),
+  ];
+}
+
 module.exports = {
   loginRules,
   checkLoginData,
@@ -118,4 +126,5 @@ module.exports = {
   passwordUpdateRules,
   checkAccountUpdateData,
   checkPasswordData,
+  accountUpdateRules,
 };
